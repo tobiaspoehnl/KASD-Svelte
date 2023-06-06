@@ -34,7 +34,7 @@ export const userStore = {
         }
     },
 
-    async deleteAll() {
+    async deleteAllUsers() {
         await User.deleteMany({});
     },
 

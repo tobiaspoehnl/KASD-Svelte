@@ -1,7 +1,7 @@
 export const placemarksMainController = {
-    index: {
+    dashboard: {
         handler: async function (request, h) {
-            return h.view("main");
+            return h.view("placemarks-main");
         },
     },
 };

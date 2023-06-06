@@ -16,7 +16,8 @@ export const placemarkStore = {
         return null;
     },
 
-    async addPlacemark(placemark) {
+    async addPlacemark(userid, placemark) {
+        placemark.createdby=userid;
         const newPlacemark = new Placemark(placemark);
         const placemarkobj = await newPlacemark.save();
         return this.getPlacemarkById(placemarkobj._id);
@@ -36,7 +37,7 @@ export const placemarkStore = {
         }
     },
 
-    async deleteAllPacemarks() {
+    async deleteAllPlacemarks() {
         await Placemark.deleteMany({});
     }
 };
