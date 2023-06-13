@@ -1,16 +1,25 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { placemarkService } from "./placemark-service.js";
-import {testPlacemark, testPlacemarks, maggie} from "../fixtures.js";
+import {testPlacemark, testPlacemarks, maggie, maggieCredentials, testUsers} from "../fixtures.js";
+import { EventEmitter } from "events";
+
+const placemark = new Array(testPlacemark.length)
+
+EventEmitter.setMaxListeners(27);
 
 suite("Placemark API tests", () => {
     setup(async () => {
-        await placemarkService.deleteAllPlacemarks();
+        await placemarkService.clearAuth();
+        await placemarkService.createUser(maggie);
+        await placemarkService.authenticate(maggieCredentials);
         await placemarkService.deleteAllUsers();
         const user = await placemarkService.createUser(maggie);
+        await placemarkService.authenticate(maggieCredentials)
+        await placemarkService.deleteAllPlacemarks();
         for (let i = 0; i < testPlacemarks.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
-            testPlacemarks[0] = await placemarkService.createPlacemark(user._id, testPlacemarks[i]);
+            placemark[0] = await placemarkService.createPlacemark(user._id, testPlacemarks[i]);
         }
     });
     teardown(async () => {});
@@ -25,13 +34,13 @@ suite("Placemark API tests", () => {
     test("delete all placemarks", async () => {
         let returnedPlacemark = await placemarkService.getAllPlacemarks();
         assert.equal(returnedPlacemark.length, 4);
-        await placemarkService.deleteAllPlacemarks();
+        await placemarkService.deleteAllPlacemarks()
         returnedPlacemark = await placemarkService.getAllPlacemarks();
         assert.equal(returnedPlacemark.length, 0);
     });
     test("get a placemark", async () => {
-        const returnedplacemark = await placemarkService.getPlacemark(testPlacemarks[0]._id);
-        assert.deepEqual(testPlacemarks[0], returnedplacemark);
+        const returnedplacemark = await placemarkService.getPlacemark(placemark[0]._id);
+        assert.deepEqual(placemark[0], returnedplacemark);
     });
 
     test("get a placemark - bad id", async () => {
@@ -47,7 +56,7 @@ suite("Placemark API tests", () => {
     test("get a placemark - deleted placemark", async () => {
         await placemarkService.deleteAllPlacemarks();
         try {
-            const returnedplacemark = await placemarkService.getPlacemark(testPlacemarks[0]._id);
+            const returnedplacemark = await placemarkService.getPlacemark(placemark[0]._id);
             assert.fail("Should not return a response");
         } catch (error) {
             assert(error.response.data.message === "No placemark with this id");

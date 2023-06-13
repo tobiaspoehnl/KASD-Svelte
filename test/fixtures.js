@@ -21,7 +21,7 @@ export const testUsers = [
         lastName: "Simpson",
         email: "homer@simpson.com",
         password: "secret",
-        adminrights: false,
+        adminrights: true,
     },
     {
         username: "hi1234",
@@ -37,7 +37,7 @@ export const testUsers = [
         lastName: "Simpson",
         email: "bart@simpson.com",
         password: "secret",
-        adminrights: false,
+        adminrights: true,
     },
 ];
 

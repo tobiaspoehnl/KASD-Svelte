@@ -10,6 +10,8 @@ export const webRoutes = [
     {method: "POST", path: "/register", config: accountsController.signup},
     {method: "POST", path: "/authenticate", config: accountsController.login},
     {method: "GET", path: "/dashboard", config: placemarksMainController.dashboard},
+    { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
+
 
 
 ];

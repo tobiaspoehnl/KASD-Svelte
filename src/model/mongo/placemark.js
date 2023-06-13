@@ -8,7 +8,6 @@ const placemarkSchema = new Schema({
     name: String,
     description: String,
     category: String,
-    analytics: String,
     location: {latitude: Number,
         longitude: Number},
     image: String,

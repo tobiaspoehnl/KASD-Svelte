@@ -1,8 +1,12 @@
 import Boom from "@hapi/boom";
-import { db } from "../model/db.js"
+import { db } from "../model/db.js";
+import { validationError } from "./logger.js";
+import { IdSpec, PlacemarkArraySpec, PlacemarkSpecReal, PlacemarkSpecPlus } from "../model/joi-schemas.js";
+
 
 export const placemarkApi = {
     find: {
+        auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
                 const placemarks = await db.placemarkStore.getAllPlacemarks();
@@ -11,9 +15,14 @@ export const placemarkApi = {
                 return Boom.serverUnavailable("Database Error");
             }
         },
+        tags: ["api"],
+        response: { schema: PlacemarkArraySpec, failAction: validationError },
+        description: "Get all placemarks",
+        notes: "Returns all placemarks",
     },
 
     findOne: {
+        auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
                 const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
@@ -25,8 +34,14 @@ export const placemarkApi = {
                 return Boom.serverUnavailable("No placemark with this id");
             }
         },
+        tags: ["api"],
+        description: "Find a placemark",
+        notes: "Returns a placemark",
+        validate: { params: { id: IdSpec }, failAction: validationError },
+        response: { schema: PlacemarkSpecPlus, failAction: validationError },
     },
     create: {
+        auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
                 const placemark = request.payload;
@@ -40,9 +55,15 @@ export const placemarkApi = {
                 return Boom.serverUnavailable("Database Error create");
             }
         },
+        tags: ["api"],
+        description: "Create a placemark",
+        notes: "Returns the newly created placemark",
+        validate: { payload: PlacemarkSpecReal, failAction: validationError },
+        response: { schema: PlacemarkSpecPlus, failAction: validationError },
     },
 
     deleteOne: {
+        auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
                 const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
@@ -55,9 +76,13 @@ export const placemarkApi = {
                 return Boom.serverUnavailable("No placemark with this id");
             }
         },
+        tags: ["api"],
+        description: "Delete a placemark",
+        validate: { params: { id: IdSpec }, failAction: validationError },
     },
 
     deleteAll: {
+        auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
                 await db.placemarkStore.deleteAllPlacemarks();
@@ -66,6 +91,8 @@ export const placemarkApi = {
                 return Boom.serverUnavailable("Database Error");
             }
         },
+        tags: ["api"],
+        description: "Delete all placemarkApi",
     },
 
 };
