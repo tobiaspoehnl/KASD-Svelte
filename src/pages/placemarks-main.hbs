@@ -1,7 +1,43 @@
 {{>logged-in-menu}}
 
-<div class="columns is-vcentered ">
-    <div class="column has-text-centered">
-        <h> placemark-main </h>
+
+<form action="/dashboard/addplacemark" method="POST">
+    <div class="field">
+        <label class="label">Placemark Title</label>
+        <input class="input" type="text" placeholder="Enter Placemark title" name="name">
+        <label class="label">Placemark longitude</label>
+        <input class="input" type="number" placeholder="Enter Placemark longitude" name="longitude">
+        <label class="label">Placemark latitude</label>
+        <input class="input" type="number" placeholder="Enter Placemark latitude" name="latitude">
+        <label class="label">Placemark description</label>
+        <input class="input" type="text" placeholder="Enter Placemark description" name="description">
+        <label class="label">Placemark category</label>
+        <input class="input" type="text" placeholder="Enter Placemark category" name="category">
     </div>
-</div>
+    <button class="button is-link">Add Placemark</button>
+</form>
+
+
+{{#if errors}}
+    <div class="box content">
+        <p> There was a problem... </p>
+        <ul>
+            {{#each errors}}
+                <li>{{message}}</li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}
+
+{{#each placemark}}
+    <div class="box box-link-hover-shadow">
+        <h2 class="title">
+            {{name}}
+        </h2>
+        <a href="/placemark/{{_id}}" class="button">
+      <span class="icon is-small">
+        <i class="fas fa-folder-open"></i>
+      </span>
+        </a>
+    </div>
+{{/each}}

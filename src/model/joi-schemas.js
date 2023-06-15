@@ -29,8 +29,8 @@ export const PlacemarkSpec = Joi.object()
         name: Joi.string().required().example("Allianz Arena"),
         description: Joi.string().required().example("The Stadium of FC Bayern Munich"),
         category: Joi.string().required().example("1.Bundesliga"),
-        latitude: Joi.number().optional().min(-90).max(90).example(48.218791),
-        longitude: Joi.number().optional().min(-180).max(180).example(11.624695),
+        latitude: Joi.number().required().min(-90).max(90).example(48.218791),
+        longitude: Joi.number().required().min(-180).max(180).example(11.624695),
         image: Joi.optional(),
         createdby: IdSpec,
     })

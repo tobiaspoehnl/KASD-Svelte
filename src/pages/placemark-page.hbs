@@ -1,0 +1,43 @@
+{{> logged-in-menu}}
+
+<section class="section">
+    <div class="title">
+        {{placemark.name}}
+    </div>
+
+    <table class="table is-fullwidth">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>category</th>
+            <th>description</th>
+            <th>longitude</th>
+            <th>latitude</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{placemark.name}}
+                </td>
+                <td>
+                    {{placemark.category}}
+                </td>
+                <td>
+                    {{placemark.description}}
+                </td>
+                <td>
+                    {{placemark.location.longitude}}
+                </td>
+                <td>
+                    {{placemark.location.latitude}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="column">
+        {{> placemark-image }}
+    </div>
+
+</section>
