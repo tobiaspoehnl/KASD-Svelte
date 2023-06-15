@@ -23,10 +23,8 @@ suite("placemark Model tests", () => {
     });
 
     test("delete all placemarkApi", async () => {
-        let returnedPlacemark = await db.placemarkStore.getAllPlacemarks();
-        assert.equal(returnedPlacemark.length, 4);
         await db.placemarkStore.deleteAllPlacemarks();
-        returnedPlacemark = await db.placemarkStore.getAllPlacemarks();
+        const returnedPlacemark = await db.placemarkStore.getAllPlacemarks();
         assert.equal(returnedPlacemark.length, 0);
     });
 

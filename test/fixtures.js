@@ -16,7 +16,7 @@ export const maggieCredentials = {
 
 export const testUsers = [
     {
-        username: "hi123",
+        userName: "hi123",
         firstName: "Homer",
         lastName: "Simpson",
         email: "homer@simpson.com",
@@ -24,7 +24,7 @@ export const testUsers = [
         adminrights: true,
     },
     {
-        username: "hi1234",
+        userName: "hi1234",
         firstName: "Marge",
         lastName: "Simpson",
         email: "marge@simpson.com",
@@ -32,7 +32,7 @@ export const testUsers = [
         adminrights: true,
     },
     {
-        username: "hi1235",
+        userName: "hi1235",
         firstName: "Bart",
         lastName: "Simpson",
         email: "bart@simpson.com",

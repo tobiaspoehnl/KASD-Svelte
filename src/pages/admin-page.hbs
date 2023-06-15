@@ -1,0 +1,47 @@
+{{>logged-in-menu}}
+
+<section class="section">
+    <div class="title">
+        <h>Users</h>
+    </div>
+
+    <table class="table is-fullwidth">
+        <thead>
+        <tr>
+            <th>username</th>
+            <th>firstname</th>
+            <th>lastname</th>
+            <th>email</th>
+            <th>adminrights</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each users}}
+            <tr>
+                <td>
+                    {{userName}}
+                </td>
+                <td>
+                    {{firstName}}
+                </td>
+                <td>
+                    {{lastName}}
+                </td>
+                <td>
+                    {{email}}
+                </td>
+                <td>
+                    {{adminrights}}
+                </td>
+                <td>
+                        <a href="/admin/{{_id}}" class="button">
+                            <span class="icon is-small">
+                         <i class="fas fa-trash"></i>
+                            </span>
+                        </a>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</section>

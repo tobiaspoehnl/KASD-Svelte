@@ -31,7 +31,7 @@ export const PlacemarkSpec = Joi.object()
         category: Joi.string().required().example("1.Bundesliga"),
         latitude: Joi.number().required().min(-90).max(90).example(48.218791),
         longitude: Joi.number().required().min(-180).max(180).example(11.624695),
-        image: Joi.optional(),
+        image: Joi.string().allow("").optional().example(""),
         createdby: IdSpec,
     })
     .label("PlacemarkPayload");
@@ -45,8 +45,8 @@ export const PlacemarkSpecReal = Joi.object()
             latitude: Joi.number().min(-90).max(90).example(48.218791),
             longitude: Joi.number().min(-180).max(180).example(11.624695),
         },
+        image: Joi.string().allow("").optional().example(""),
         createdby: IdSpec,
-        img: Joi.string().allow("").optional().example(""),
     })
     .label("PlacemarkReal")
 
