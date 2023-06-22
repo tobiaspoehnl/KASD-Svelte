@@ -1,15 +1,16 @@
 <script>
   import Header from '$lib/Header.svelte';
+  import WelcomeNavigator from '$lib/WelcomeNavigator.svelte';
 </script>
 
-<Header />
+<Header>
+  <WelcomeNavigator />
+</Header>
 
-<div class="columns is-vcentered content">
+
+<div class="columns is-centered content">
   <div class="column has-text-centered">
-    <img width="300" src="/homer.png" alt="homer" />
-  </div>
-  <div class="column">
-    <h1 class="title">Help Me Run Springfield</h1>
-    <p>Donate what you can now - No Bitcoins accepted!</p>
+    <h1 class="title">Welcome to Placemark</h1>
+    <p>Here you can add placemarks and look at them</p>
   </div>
 </div>

@@ -27,7 +27,7 @@ export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray")
 export const PlacemarkSpec = Joi.object()
     .keys({
         name: Joi.string().required().example("Allianz Arena"),
-        description: Joi.string().required().example("The Stadium of FC Bayern Munich"),
+        description: Joi.string().required().allow("").example("The Stadium of FC Bayern Munich"),
         category: Joi.string().required().example("1.Bundesliga"),
         latitude: Joi.number().required().min(-90).max(90).example(48.218791),
         longitude: Joi.number().required().min(-180).max(180).example(11.624695),
@@ -39,7 +39,7 @@ export const PlacemarkSpec = Joi.object()
 export const PlacemarkSpecReal = Joi.object()
     .keys({
         name: Joi.string().required().example("Allianz Arena"),
-        description: Joi.string().required().example("The Stadium of FC Bayern Munich"),
+        description: Joi.string().required().allow("").example("The Stadium of FC Bayern Munich"),
         category: Joi.string().required().example("1.Bundesliga"),
         location: {
             latitude: Joi.number().min(-90).max(90).example(48.218791),
@@ -63,6 +63,7 @@ export const JwtAuth = Joi.object()
     .keys({
         success: Joi.boolean().example("true").required(),
         token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+        id: IdSpec
     })
     .label("JwtAuth");
 

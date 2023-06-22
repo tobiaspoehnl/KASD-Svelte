@@ -47,7 +47,7 @@ export const seedData = {
         AllianzArena: {
             name: "Allianz Arena",
             description: "The Stadium of FC Bayern Munich",
-            category: "1.Bundesliga",
+            category: "Sport",
             location: {latitude: "48.218791",
                 longitude: "11.624695"},
             createdby: "->users.admin"
@@ -55,7 +55,7 @@ export const seedData = {
         SignalIdunaPark: {
             name: "Signal Iduna Park",
             description: "The stadium of Borussia Dortmund",
-            category: "1.Bundesliga",
+            category: "Sport",
             location: {latitude: "51.492668",
                 longitude: "7.451767"},
             createdby: "->users.admin"
@@ -63,7 +63,7 @@ export const seedData = {
         MaxMorlockStadion: {
             name: "Max-Morlock-Stadion",
             description: "The stadium of 1.FC Nürnberg",
-            category: "2.Bundesliga",
+            category: "Sport",
             location: {latitude: "49.426255",
             longitude: "11.125707"},
             createdby: "->users.admin"
@@ -71,7 +71,7 @@ export const seedData = {
         RedBullArena: {
             name: "Red Bull Arena",
             description: "The stadium of RB Leibzig",
-            category: "1.Bundesliga",
+            category: "Sport",
             location: {latitude: "51.345787",
                 longitude: "12.34827"},
             createdby: "->users.admin"
@@ -79,7 +79,7 @@ export const seedData = {
         JahnstadionRegensburg:{
             name: "Jahnstadion Regensburg",
             description: "The stadium of SSV Jahn Regensburg",
-            category: "2.Bundesliga",
+            category: "Sport",
             location: {latitude: "48.990856",
                 longitude: "12.107238"},
             createdby: "->users.admin"
