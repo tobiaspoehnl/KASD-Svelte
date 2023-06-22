@@ -22,7 +22,7 @@ export const placemarkApi = {
     },
 
     findOne: {
-        auth: {strategy: "jwt"},
+        auth: false,
         handler: async function (request, h) {
             try {
                 const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
@@ -44,6 +44,8 @@ export const placemarkApi = {
         auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
+                console.log(request.payload)
+                console.log(request.auth)
                 const userid = request.auth.credentials._id;
                 const newPlacemark = await db.placemarkStore.addPlacemark(userid, request.payload);
                 if (newPlacemark) {

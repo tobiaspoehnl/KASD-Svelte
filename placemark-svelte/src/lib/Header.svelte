@@ -1,13 +1,12 @@
 <script>
     import TitleBar from './TitleBar.svelte';
-    import WelcomeNavigator from './WelcomeNavigator.svelte';
 </script>
 
-<div class="columns is-vcentered">
-    <div class="column is-two-thirds">
-        <TitleBar title={'Donation Services Inc.'} subTitle={'Sign up or Log in'} />
+<div class="box is-centered">
+    <div class=" is-two-thirds is-centered">
+        <TitleBar title={'Placemark'} subTitle={'Sign up or Log in'} />
     </div>
     <div class="column">
-        <WelcomeNavigator />
+        <slot />
     </div>
 </div>

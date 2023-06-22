@@ -87,11 +87,8 @@ export const userApi = {
                 if (user.password !== request.payload.password) {
                     return Boom.unauthorized("Invalid password");
                 }
-                if (!user.adminrights){
-                    return Boom.unauthorized("Not an Admin");
-                }
                 const token = createToken(user);
-                return h.response({success: true, token: token}).code(201)
+                return h.response({success: true, token: token, id: user._id}).code(201)
             } catch (err) {
                 return Boom.serverUnavailable("Database Error");
             }
