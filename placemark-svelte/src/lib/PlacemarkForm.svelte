@@ -8,7 +8,7 @@
     let longitude = "";
     let latitude = "";
 
-    let CategoryList =["Food", "Entertainment", "Accommodation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Bridge", "Forest", "Other"]
+    let CategoryList =["Food", "Entertainment", "Accommodation", "Transportation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Waters", "Bridge", "Forest", "Parks", "Historic-sites", "Gas-station", "Company", "Other"]
 
     let selectedCategory = "";
     let message ="Add Placemark";

@@ -1,6 +1,7 @@
 // @ts-nocheck
 import axios from "axios";
-import { user } from "../stores.js";
+import { latestPlacemark, user } from "../stores.js";
+
 
 export const placemarkService = {
     baseUrl: "http://localhost:3000",
@@ -79,6 +80,7 @@ export const placemarkService = {
     async addPlacemark(placemark, id) {
         try {
             const response = await axios.post(`${this.baseUrl}/api/users/${id}/placemarks`, placemark);
+            latestPlacemark.set(placemark);
             return response.status === 200;
         } catch (error) {
             return false;

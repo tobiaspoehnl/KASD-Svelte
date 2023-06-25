@@ -1,7 +1,13 @@
 <script>
-    import Header from "$lib/Header.svelte";
+    import { beforeUpdate } from "svelte";
     import MainNavigator from '$lib/MainNavigator.svelte';
     import PlacemarkList from "$lib/PlacemarkList.svelte";
+    import PlacemarkMap from "$lib/PlacemarkMap.svelte";
+    import { placemarkService } from "../../services/placemark-service.js";
+
+    beforeUpdate(() => {
+        placemarkService.reload();
+    });
 </script>
 
 <div class="box is-vcentered content">
@@ -9,10 +15,14 @@
 </div>
 
 
-
-<div class="columns is-vcentered content">
-    <div class="column box has-text-centered">
-        <h1 class="title is-4">Placemarks to date</h1>
-        <PlacemarkList />
+<div class="columns is-vcentered">
+    <div class="column has-text-centered">
+        <PlacemarkMap />
+    </div>
+    <div class="columns is-vcentered content">
+        <div class="column box has-text-centered">
+            <h1 class="title is-4">Placemarks to date</h1>
+            <PlacemarkList />
+        </div>
     </div>
 </div>
