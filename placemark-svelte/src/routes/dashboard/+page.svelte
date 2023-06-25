@@ -17,7 +17,7 @@
 
 <div class="columns is-vcentered">
     <div class="column has-text-centered">
-        <PlacemarkMap />
+        <PlacemarkMap mapname="placemark-map6" layer=""/>
     </div>
     <div class="columns is-vcentered content">
         <div class="column box has-text-centered">

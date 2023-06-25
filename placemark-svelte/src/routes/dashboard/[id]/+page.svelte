@@ -7,8 +7,9 @@
 </script>
 
 
-    <MainNavigator/>
-
+<div class="box is-centered content">
+    <MainNavigator />
+</div>
 <section class="section columns is-vcentered">
     <div class="column">
         <div class="name title">

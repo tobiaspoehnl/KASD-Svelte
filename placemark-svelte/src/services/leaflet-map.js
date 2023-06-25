@@ -2,6 +2,9 @@
 // @ts-nocheck
 import * as L from "leaflet";
 
+const apiKey= import.meta.env.VITE_apikeyopenweather;
+
+
 export class LeafletMap {
     imap = {};
     control = {};
@@ -17,7 +20,24 @@ export class LeafletMap {
         }),
         Satellite: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
             attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-        })
+        }),
+        OPNVKarte: L.tileLayer('https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }),
+        Esri_WorldStreetMap: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+        }),
+        OpenTopoMap: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            maxZoom: 17,
+            attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+        }),
+        Temperature: L.tileLayer(`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+            maxZoom: 17
+        }),
+        Rain: L.tileLayer(`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${apiKey}`, {
+            maxZoom: 17
+        }),
     };
 
     constructor(id, descriptor, activeLayer = "") {
@@ -65,7 +85,7 @@ export class LeafletMap {
         this.imap.setView(new L.LatLng(location.lat, location.lng), 8);
     }
 
-    addMarker(location, popupText = "", layerTitle = "default") {
+    async addMarker(location, popupText = "", layerTitle = "default") {
         let group = {};
         let marker = L.marker([location.lat, location.lng]);
         if (popupText) {
