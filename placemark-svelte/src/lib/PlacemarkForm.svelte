@@ -70,7 +70,7 @@
     </div>
     <div class="field">
         <div class="control">
-            <button class="button is-link is-light">Donate</button>
+            <button class="button is-link is-light">Add Placemark</button>
         </div>
     </div>
     <div class="box">

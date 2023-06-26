@@ -34,6 +34,11 @@
                 <p class="subtitle is-6">{data.placemark.category}</p>
             </div>
         </div>
+        <div class="field">
+            <a href="/dashboard/{data.placemark._id}/delete" class="button is-info">
+                <span>Delete</span>
+            </a>
+        </div>
     </div>
     <div class="column">
         {#each data.placemark.image as image}

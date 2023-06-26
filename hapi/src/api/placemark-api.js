@@ -65,15 +65,21 @@ export const placemarkApi = {
     },
 
     deleteOne: {
-        auth: {strategy: "jwt"},
+        auth: {
+            strategy: "jwt"
+        },
         handler: async function (request, h) {
             try {
+                const loggedInUser = request.auth.credentials;
                 const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
                 if (!placemark) {
                     return Boom.notFound("No placemark with this id");
                 }
-                await db.placemarkStore.deletePlacemarkById(placemark._id);
-                return h.response().code(204);
+                if(loggedInUser.adminrights || loggedInUser._id===placemark.createdby){
+                    await db.placemarkStore.deletePlacemarkById(placemark._id);
+                    return h.response().code(204);
+                }
+                return false
             } catch (err) {
                 return Boom.serverUnavailable("No placemark with this id");
             }
