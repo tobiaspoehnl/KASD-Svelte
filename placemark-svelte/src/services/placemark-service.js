@@ -95,4 +95,13 @@ export const placemarkService = {
             return [];
         }
     },
+
+    async getallimages(){
+        try{
+            const response = await axios.get(`${this.baseUrl}/api/images`);
+            return response.data;
+        } catch(error){
+            return [];
+        }
+    }
 };

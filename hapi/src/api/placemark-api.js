@@ -2,6 +2,7 @@ import Boom from "@hapi/boom";
 import { db } from "../model/db.js";
 import { validationError } from "./logger.js";
 import { IdSpec, PlacemarkArraySpec, PlacemarkSpecReal, PlacemarkSpecPlus } from "../model/joi-schemas.js";
+import {imageStore} from "../model/image-store.js";
 
 
 export const placemarkApi = {
@@ -95,5 +96,16 @@ export const placemarkApi = {
         tags: ["api"],
         description: "Delete all placemarkApi",
     },
+    getallimages: {
+        auth: false,
+        handler: async function (request, h) {
+            try {
+                const images = imageStore.getAllImages();
+                return images;
+            } catch (err) {
+            return Boom.serverUnavailable("Database Error");
+            }
+        }
+    }
 
 };

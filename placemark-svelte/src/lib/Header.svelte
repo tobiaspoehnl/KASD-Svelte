@@ -4,7 +4,7 @@
 
 <div class="box is-centered">
     <div class=" is-two-thirds is-centered">
-        <TitleBar title={'Placemark'} subTitle={'Sign up or Log in'} />
+        <TitleBar title={'Placemark'} />
     </div>
     <div class="column">
         <slot />

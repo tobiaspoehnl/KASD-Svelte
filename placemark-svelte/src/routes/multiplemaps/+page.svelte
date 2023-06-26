@@ -13,6 +13,7 @@
     <MainNavigator />
 </div>
 
+<h1 class="title is-1 has-text-centered">Multiple Maps</h1>
 
 <div class="columns">
     <div class="column">

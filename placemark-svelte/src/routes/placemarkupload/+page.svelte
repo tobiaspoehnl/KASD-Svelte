@@ -9,6 +9,8 @@
     <MainNavigator />
 </div>
 
+<h1 class="title is-1 has-text-centered">Add Placemark</h1>
+
 <div class="columns is-centered content">
 
     <PlacemarkForm />

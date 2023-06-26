@@ -13,7 +13,7 @@
         <div class="subtitle is-5">{subTitle}</div>
     </div>
     <div class="column">
-        <i class="fas fa-donate fa-3x" style="color:rgb(95, 96, 173)" />
+        <img src="../map.png" width="60" alt="img" />
         {#if $user.email}
             <div class="is-size-7">{$user.email}</div>
         {:else}

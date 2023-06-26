@@ -14,6 +14,8 @@
     <MainNavigator />
 </div>
 
+<h1 class="title is-1 has-text-centered">Dashboard</h1>
+
 
 <div class="columns is-vcentered">
     <div class="column has-text-centered">
