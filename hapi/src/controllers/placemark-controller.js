@@ -18,7 +18,7 @@ export const placemarkController = {
                 const file = request.payload.imagefile;
                 if (Object.keys(file).length > 0) {
                     const url = await imageStore.uploadImage(request.payload.imagefile);
-                    placemark.image = url;
+                    placemark.image.push(url);
                     await db.placemarkStore.updatePlacemark(placemark);
                 }
                 return h.redirect(`/placemark/${placemark._id}`);

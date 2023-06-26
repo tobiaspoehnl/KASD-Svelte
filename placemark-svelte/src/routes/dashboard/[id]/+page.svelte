@@ -10,6 +10,7 @@
 <div class="box is-centered content">
     <MainNavigator />
 </div>
+
 <section class="section columns is-vcentered">
     <div class="column">
         <div class="name title">
@@ -35,13 +36,15 @@
         </div>
     </div>
     <div class="column">
-        <div class="card">
-            <div class="card-image">
-                <figure class="image is-256x256">
-                    <img src={data.placemark.image} alt="">
-                </figure>
+        {#each data.placemark.image as image}
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-256x256">
+                        <img src={image} alt="">
+                    </figure>
+                </div>
             </div>
-        </div>
+        {/each}
     </div>
 </section>
 
