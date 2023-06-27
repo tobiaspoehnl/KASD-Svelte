@@ -1,9 +1,29 @@
 <script>
     import Header from "$lib/Header.svelte";
     import MainNavigator from "$lib/MainNavigator.svelte";
+    import {onMount} from "svelte";
+    import {placemarkService} from "../../../services/placemark-service.js";
+
+    const apiKey= import.meta.env.VITE_apikeyopenweather;
 
     export let data;
 
+
+    var conditions;
+
+    onMount(async () => {
+        let placemark = await placemarkService.getPlacemark(data.placemark._id);
+        const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${placemark.location.latitude}&lon=${placemark.location.longitude}&units=metric&appid=${apiKey}`;
+        await fetch(requestUrl, {
+            mode: 'cors'
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                conditions = data;
+            });
+    });
 </script>
 
 
@@ -32,6 +52,14 @@
             <div>
                 <p class="title is-5">Category: </p>
                 <p class="subtitle is-6">{data.placemark.category}</p>
+            </div>
+            <div>
+                <p class="title is-5">Weather: </p>
+                <p class="subtitle is-6">{conditions?.weather[0].main}</p>
+            </div>
+            <div>
+                <p class="title is-5">Temperature: </p>
+                <p class="subtitle is-6">{conditions?.main?.temp} °C</p>
             </div>
         </div>
         <div class="field">

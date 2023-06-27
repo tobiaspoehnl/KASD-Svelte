@@ -5,6 +5,7 @@
     import PlacemarkMap from "$lib/PlacemarkMap.svelte";
     import { placemarkService } from "../../services/placemark-service.js";
 
+
     beforeUpdate(() => {
         placemarkService.reload();
     });

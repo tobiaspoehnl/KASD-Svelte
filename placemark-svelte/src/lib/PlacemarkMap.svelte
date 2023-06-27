@@ -26,8 +26,8 @@
     });
 
     function addPlacemarkMarker(map, placemark) {
-        const placemarkStr = `${placemark.name} <br> Category: ${placemark.category}`;
-        map.addMarker({ lat: placemark.location.latitude, lng: placemark.location.longitude }, placemarkStr, "Placemarks");
+        const placemarkStr = `${placemark.name}`;
+        map.addMarker({ lat: placemark.location.latitude, lng: placemark.location.longitude }, placemarkStr, "Placemarks", placemark._id);
     }
 
     latestPlacemark.subscribe((placemark) => {
