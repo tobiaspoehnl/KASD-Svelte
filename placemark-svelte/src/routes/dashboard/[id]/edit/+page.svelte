@@ -1,7 +1,11 @@
 <script>
-    import { placemarkService } from "../services/placemark-service.js";
-    import { user } from "../stores.js";
+    import MainNavigator from "$lib/MainNavigator.svelte";
+    import { placemarkService } from "../../../../services/placemark-service.js";
+    import { user } from "../../../../stores.js";
+    import {goto} from "$app/navigation";
     // @ts-nocheck
+
+    export let data;
 
     let name = "";
     let description = "";
@@ -11,11 +15,9 @@
     let CategoryList =["Food", "Entertainment", "Accommodation", "Transportation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Waters", "Bridge", "Forest", "Parks", "Historic-sites", "Gas-station", "Company", "Other"]
 
     let selectedCategory = "";
-    let message ="Add Placemark";
+    let message ="Edit Placemark";
 
-
-    async function addPlacemark() {
-        if (name  && longitude && latitude && selectedCategory) {
+    async function editPlacemark() {
             const placemark = {
                 name: name,
                 description: description,
@@ -25,35 +27,41 @@
                 },
                 category: selectedCategory,
             }
-            const success= await placemarkService.addPlacemark(placemark, $user.id);
+            const success= await placemarkService.editPlacemark(placemark, data);
             if (!success) {
                 message = "Adding not completed - some error occurred";
                 return;
             }
-            message = "You added a Placemark";
-        } else {
-            message = "Please select name, location and category";
+            message = "You edited the Placemark";
         }
-    }
+
+
+
+
 </script>
 
-<form on:submit|preventDefault={addPlacemark}>
+<div class="box is-centered content">
+    <MainNavigator />
+</div>
+
+
+<form on:submit|preventDefault={editPlacemark}>
 
     <div class="field">
         <label for="name" class="label">Name</label>
-        <input bind:value={name} id="name" class="input" type="text" placeholder="Enter name" name="name">
+        <input bind:value={data.placemark.name} id="name" class="input" type="text" placeholder="{data.placemark.name}" name="name">
     </div>
     <div class="field">
         <label class="label" for="description">Description:</label>
-        <input bind:value={description} class="input" id="description" name="description" type="text" />
+        <input bind:value={data.placemark.description} class="input" id="description" name="{data.placemark.description}" type="text"/>
     </div>
     <div class="field">
         <label for="longitude" class="label">longitude</label>
-        <input bind:value={longitude} id="longitude" class="input" type="number" placeholder="Enter longitude" name="longitude" step="0.000001">
+        <input bind:value={data.placemark.location.longitude} id="longitude" class="input" type="number" min="-180" max="180" placeholder="Enter longitude" name="{data.placemark.location.longitude}" step="0.000001">
     </div>
     <div class="field">
         <label for="latitude" class="label">latitude</label>
-        <input bind:value={latitude} id="latitude" class="input" type="number" placeholder="Enter latitude" name="latitude" step="0.000001">
+        <input bind:value={data.placemark.location.latitude} id="latitude" class="input" type="number" min="-90" max="90" placeholder="Enter latitude" name="{data.placemark.location.latitude}" step="0.000001">
     </div>
     <div class="field">
         <label for="latitude" class="label">category</label>
@@ -67,7 +75,7 @@
     </div>
     <div class="field">
         <div class="control">
-            <button class="button is-link is-light">Add Placemark</button>
+            <button class="button is-link is-light">Edit Placemark</button>
         </div>
     </div>
     <div class="box">

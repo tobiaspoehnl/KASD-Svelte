@@ -41,11 +41,14 @@ export const placemarkStore = {
         await Placemark.deleteMany({});
     },
 
-    async updatePlacemark(updatedPlacemark) {
-        console.log(updatedPlacemark)
-        const placemark = await Placemark.findOne({ _id: updatedPlacemark._id });
-        placemark.name = updatedPlacemark.name;
-        placemark.image = updatedPlacemark.image;
-        await placemark.save();
+    async updatePlacemark(placemark, updatedPlacemark) {
+        const placemarkToUpdate = await Placemark.findOne({_id: placemark._id})
+        placemarkToUpdate.name=updatedPlacemark.name
+        placemarkToUpdate.description=updatedPlacemark.description
+        placemarkToUpdate.location.longitude=updatedPlacemark.location.longitude
+        placemarkToUpdate.location.latitude=updatedPlacemark.location.latitude
+        placemarkToUpdate.category=updatedPlacemark.category
+
+        await placemarkToUpdate.save();
     },
 };

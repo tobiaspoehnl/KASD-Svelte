@@ -97,6 +97,18 @@ export const placemarkService = {
         }
     },
 
+    async editPlacemark(placemark, data){
+        try {
+            const id = data.placemark._id
+            const updatedplacemark = placemark
+            console.log(updatedplacemark)
+            const response = await axios.post(`${this.baseUrl}/api/placemarks/${id}/edit`, updatedplacemark);
+            return response.status === 200;
+        } catch (error) {
+            return false;
+        }
+    },
+
     async getPlacemark(id){
         try{
             const response = await axios.get(`${this.baseUrl}/api/placemarks/${id}`);

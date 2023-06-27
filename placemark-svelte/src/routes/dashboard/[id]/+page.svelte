@@ -35,6 +35,11 @@
             </div>
         </div>
         <div class="field">
+            <a href="/dashboard/{data.placemark._id}/edit" class="button is-info">
+                <span>Edit</span>
+            </a>
+        </div>
+        <div class="field">
             <a href="/dashboard/{data.placemark._id}/delete" class="button is-info">
                 <span>Delete</span>
             </a>

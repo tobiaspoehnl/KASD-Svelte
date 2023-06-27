@@ -45,8 +45,6 @@ export const placemarkApi = {
         auth: {strategy: "jwt"},
         handler: async function (request, h) {
             try {
-                console.log(request.payload)
-                console.log(request.auth)
                 const userid = request.auth.credentials._id;
                 const newPlacemark = await db.placemarkStore.addPlacemark(userid, request.payload);
                 if (newPlacemark) {
@@ -112,6 +110,21 @@ export const placemarkApi = {
             return Boom.serverUnavailable("Database Error");
             }
         }
-    }
+    },
+
+    editPlacemark: {
+        auth: false,
+        handler: async function (request, h) {
+            try {
+                const updatedPlacemark = request.payload
+                const placemark = await db.placemarkStore.getPlacemarkById(request.params.id)
+                await db.placemarkStore.updatePlacemark(placemark, updatedPlacemark)
+                return true;
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error create");
+            }
+        },
+    },
+
 
 };
