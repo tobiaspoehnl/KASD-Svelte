@@ -51,4 +51,13 @@ export const placemarkStore = {
 
         await placemarkToUpdate.save();
     },
+    async CountPlacemarks(){
+        const placemarks = await Placemark.countDocuments();
+        return placemarks;
+    },
+
+    async CountPlacemarksByCategory(category){
+        const placemarks = await Placemark.countDocuments({ category: category});
+        return placemarks
+    },
 };

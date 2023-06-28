@@ -117,6 +117,14 @@ export const placemarkService = {
             return [];
         }
     },
+    async getdataset() {
+        try {
+            const response = await axios.get(`${this.baseUrl}/api/dataset`);
+            return response.data;
+        } catch (error) {
+            return [];
+        }
+    },
 
     async getallimages(){
         try{

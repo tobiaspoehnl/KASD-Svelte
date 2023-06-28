@@ -125,6 +125,61 @@ export const placemarkApi = {
             }
         },
     },
+    getdataset: {
+        auth: false,
+        handler: async function (request, h) {
+            try {
+                const userlength = await db.userStore.CountUsers();
+                const placemarklength = await db.placemarkStore.CountPlacemarks();
+                const foodlength = await db.placemarkStore.CountPlacemarksByCategory("Food");
+                const entertainmentlength = await db.placemarkStore.CountPlacemarksByCategory("Entertainment");
+                const accommodationlength = await db.placemarkStore.CountPlacemarksByCategory("Accommodation");
+                const transportationlength = await db.placemarkStore.CountPlacemarksByCategory("Transportation");
+                const citylength = await db.placemarkStore.CountPlacemarksByCategory("City");
+                const educationlength = await db.placemarkStore.CountPlacemarksByCategory("Education");
+                const medicallength = await db.placemarkStore.CountPlacemarksByCategory("Medical");
+                const sportlength = await db.placemarkStore.CountPlacemarksByCategory("Sport");
+                const shoppinglength = await db.placemarkStore.CountPlacemarksByCategory("Shopping");
+                const landscapefeaturelength = await db.placemarkStore.CountPlacemarksByCategory("Landscape-Feature");
+                const riverlength = await db.placemarkStore.CountPlacemarksByCategory("River");
+                const waterslength = await db.placemarkStore.CountPlacemarksByCategory("Waters");
+                const bridgelength = await db.placemarkStore.CountPlacemarksByCategory("Bridge");
+                const forestlength = await db.placemarkStore.CountPlacemarksByCategory("Forest");
+                const parkslength = await db.placemarkStore.CountPlacemarksByCategory("Parks");
+                const historicsiteslength = await db.placemarkStore.CountPlacemarksByCategory("Historic-sites");
+                const gasstationlength = await db.placemarkStore.CountPlacemarksByCategory("Gas-station");
+                const companylength = await db.placemarkStore.CountPlacemarksByCategory("Company");
+                const otherslength = await db.placemarkStore.CountPlacemarksByCategory("Others");
+                const viewData = {
+                    title: "Analytics",
+                    userlength: userlength,
+                    placemarklength: placemarklength,
+                    foodlength: foodlength,
+                    entertainmentlength: entertainmentlength,
+                    accommodationlength: accommodationlength,
+                    transportationlength: transportationlength,
+                    citylength: citylength,
+                    educationlength: educationlength,
+                    medicallength: medicallength,
+                    sportlength: sportlength,
+                    shoppinglength: shoppinglength,
+                    landscapefeaturelength: landscapefeaturelength,
+                    riverlength: riverlength,
+                    waterslength: waterslength,
+                    bridgelength: bridgelength,
+                    forestlength: forestlength,
+                    parkslength: parkslength,
+                    historicsiteslength: historicsiteslength,
+                    gasstationlength: gasstationlength,
+                    companylength: companylength,
+                    otherslength: otherslength,
+                }
+                return viewData;
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error");
+            }
+        }
+    },
 
 
 };
