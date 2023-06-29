@@ -1,5 +1,7 @@
 import { Placemark } from "./placemark.js";
 import {userStore} from "./user-store.js";
+// eslint-disable-next-line import/no-cycle
+import {db} from "../db.js";
 
 export const placemarkStore = {
 
@@ -60,4 +62,21 @@ export const placemarkStore = {
         const placemarks = await Placemark.countDocuments({ category: category});
         return placemarks
     },
+    async imagePush(placemark, url){
+        const placemark2 = await db.placemarkStore.getPlacemarkById(placemark._id);
+        placemark2.image.push(url);
+        await this.updatePlacemarkImage(placemark2);
+    },
+    async updatePlacemarkImage(updatedPlacemark) {
+        const placemark = await Placemark.findOne({ _id: updatedPlacemark._id });
+        placemark.title = updatedPlacemark.title;
+        placemark.image = updatedPlacemark.image;
+        await placemark.save();
+    },
+    async deletePlacemarkimgs(updatedPlacemark) {
+        const placemark = await Placemark.findOne({ _id: updatedPlacemark._id });
+        placemark.image = [];
+        await placemark.save();
+    },
+
 };

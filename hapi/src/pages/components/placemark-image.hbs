@@ -9,7 +9,7 @@
     <div class="card-content">
         <form action="/placemark/{{placemark._id}}/uploadimage" method="POST" enctype="multipart/form-data">
             <div id="file-select" class="file has-name is-fullwidth">
-                <label class="file-label"> <input class="file-input" name="imagefile" type="file" name="resume" accept="image/png, image/jpeg">
+                <label class="file-label"> <input class="file-input" name="imagefile" type="file" accept="image/png, image/jpeg">
                     <span class="file-cta">
             <span class="file-icon">
               <i class="fas fa-upload"></i>
@@ -23,6 +23,9 @@
                 <button type="submit" class="button is-info">Upload</button>
             </div>
         </form>
+        <a class="button is-danger" href="/placemark/{{placemark._id}}/deleteimage">Delete
+            <i class="fas fa-trash"></i>
+        </a>
     </div>
 </div>
 

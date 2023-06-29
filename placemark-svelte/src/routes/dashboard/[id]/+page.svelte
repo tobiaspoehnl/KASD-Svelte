@@ -3,6 +3,8 @@
     import MainNavigator from "$lib/MainNavigator.svelte";
     import {onMount} from "svelte";
     import {placemarkService} from "../../../services/placemark-service.js";
+    import {latestRoute} from "../../../stores.js";
+    import {goto} from "$app/navigation";
 
     const apiKey= import.meta.env.VITE_apikeyopenweather;
 
@@ -24,6 +26,30 @@
                 conditions = data;
             });
     });
+
+    let fileName = "";
+    let files;
+
+    async function uploadImages() {
+        await placemarkService.uploadImage(data.placemark._id, files);
+        await goto("/dashboard");
+    }
+
+    async function deleteImages() {
+        const response = await placemarkService.deleteImages(data.placemark._id);
+        if (response) {
+            await goto("/dashboard")
+        }
+    }
+
+    async function addImages() {
+        if (files.length > 0) {
+            fileName = "";
+            for (const element of files) {
+                fileName += element.name + ", ";
+            }
+        }
+    }
 </script>
 
 
@@ -72,6 +98,36 @@
                 <span>Delete</span>
             </a>
         </div>
+        <div class="box has-text-centered">
+            <form on:submit|preventDefault={uploadImages} enctype="multipart/form-data">
+                <div id="file-select" class="file has-name is-fullwidth">
+                    <label class="file-label">
+                        <input bind:files on:change={addImages} class="file-input"
+                               name="imagefile" type="file" accept="image/png, image/jpeg">
+                        <span class="file-cta">
+                        <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Choose a file…
+                        </span>
+                    </span>
+                        <span class="file-name">{fileName}</span>
+                    </label>
+                    <button type="submit" class="button is-info">Upload</button>
+                </div>
+            </form>
+        </div>
+        <p class="title is-5">Delete images</p>
+        <form on:submit|preventDefault={deleteImages}>
+            <div class="card-footer">
+                <button type="submit" class="button is-danger">
+                <span class="icon">
+                    <i class="fas fa-trash"></i>
+                </span>
+                </button>
+            </div>
+        </form>
     </div>
     <div class="column">
         {#each data.placemark.image as image}
@@ -84,6 +140,7 @@
             </div>
         {/each}
     </div>
+
 </section>
 
 

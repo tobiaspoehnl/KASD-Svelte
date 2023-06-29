@@ -24,8 +24,8 @@ export const imageStore = {
         return response.url;
     },
 
-    deleteImage: async function(img) {
-        const shorturl = img.slice(0, -4);
+    deleteImage: async function(image) {
+        const shorturl = image.slice(0, -4);
         const words = shorturl.split("/")
         const public_id = words.pop();
         await cloudinary.v2.uploader.destroy(public_id, {});

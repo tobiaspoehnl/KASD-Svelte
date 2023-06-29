@@ -180,6 +180,55 @@ export const placemarkApi = {
             }
         }
     },
-
-
+    uploadImage: {
+        auth: {
+            strategy: "jwt",
+        },
+        handler: async function (request, h) {
+            try {
+                const loggedInUser = request.auth.credentials;
+                const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
+                const file = Object.values(request.payload)[0];
+                if (placemark.createdby.equals(loggedInUser._id) || loggedInUser.adminrights) {
+                    if (Object.keys(file).length > 0) {
+                        const url = await imageStore.uploadImage(file);
+                        await db.placemarkStore.imagePush(placemark, url);
+                        return true;
+                    }
+                }
+                return false;
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
+        },
+        payload: {
+            multipart: true,
+            output: "data",
+            maxBytes: 209715200,
+            parse: true,
+        },
+    },
+    deleteImage: {
+        auth: {
+            strategy: "jwt",
+        },
+        handler: async function (request, h) {
+            try {
+                const loggedInUser = request.auth.credentials;
+                const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
+                if (loggedInUser.adminrights || placemark.createdby.equals(loggedInUser._id)) {
+                    for (const element of placemark.image) {
+                        await imageStore.deleteImage(element);
+                    }
+                    await db.placemarkStore.deletePlacemarkimgs(placemark);
+                    return true
+                }
+                return false;
+            } catch (err) {
+                console.log(err);
+                return false;
+            }
+        },
+    },
 };
