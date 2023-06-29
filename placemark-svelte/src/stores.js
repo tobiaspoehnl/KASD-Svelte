@@ -8,3 +8,5 @@ export const user = writable({
 
 
 export const latestPlacemark = writable(null);
+export const latestChartType = writable("line");
+export const latestRoute = writable("");
