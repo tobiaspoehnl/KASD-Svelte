@@ -27,7 +27,6 @@ export const placemarksMainController = {
                 category: request.payload.category,
                 location: {latitude: request.payload.latitude,
                     longitude: request.payload.longitude,},
-                image: "",
             };
             console.log(newPlacemark)
             await db.placemarkStore.addPlacemark(loggedInUser._id, newPlacemark);
