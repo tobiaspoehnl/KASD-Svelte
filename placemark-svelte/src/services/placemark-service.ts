@@ -38,10 +38,9 @@ export const placemarkService = {
     },
 
 
-    async signup(userName: string, firstName: string, lastName: string, email: string, password: string, adminrights: boolean): Promise<boolean> {
+    async signup(firstName: string, lastName: string, email: string, password: string, adminrights: boolean): Promise<boolean> {
         try {
             const userDetails = {
-                userName: firstName + lastName,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,

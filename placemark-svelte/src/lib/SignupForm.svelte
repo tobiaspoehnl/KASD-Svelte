@@ -2,7 +2,6 @@
     import { goto } from "$app/navigation";
     import { placemarkService } from "../services/placemark-service.ts";
 
-    let userName = "";
     let firstName = "";
     let lastName = "";
     let email = "";
@@ -12,7 +11,7 @@
 
     async function signup() {
         console.log(`attemting to sign up email: ${email}`);
-        let success = await placemarkService.signup(userName, firstName, lastName, email, password, adminrights);
+        let success = await placemarkService.signup(firstName, lastName, email, password, adminrights);
         if (success) {
             goto("/");
         } else {
