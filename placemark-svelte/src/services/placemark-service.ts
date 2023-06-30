@@ -48,6 +48,7 @@ export const placemarkService = {
                 password: password,
                 adminrights: adminrights
             };
+            console.log(userDetails)
             await axios.post(this.baseUrl + "/api/users", userDetails);
             return true;
         } catch (error) {
