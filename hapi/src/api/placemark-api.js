@@ -113,7 +113,9 @@ export const placemarkApi = {
     },
 
     editPlacemark: {
-        auth: false,
+        auth: {
+            strategy: "jwt"
+        },
         handler: async function (request, h) {
             try {
                 const loggedInUser = request.auth.credentials;

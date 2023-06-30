@@ -97,8 +97,7 @@ export const placemarkService = {
 
     async editPlacemark(placemark: PlacemarkNoImage, id: string): Promise<boolean>{
         try {
-            const updatedplacemark = placemark
-            console.log(updatedplacemark)
+            const updatedplacemark = placemark;
             const response = await axios.post(`${this.baseUrl}/api/placemarks/${id}/edit`, updatedplacemark);
             return response.status === 200;
         } catch (error) {
