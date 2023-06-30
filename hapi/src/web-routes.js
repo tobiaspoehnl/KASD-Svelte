@@ -4,7 +4,7 @@ import {placemarkController} from "./controllers/placemark-controller.js";
 import {adminController} from "./controllers/admin-controller.js";
 
 export const webRoutes = [
-    {   method: "GET", path: "/", config: accountsController.index},
+    {method: "GET", path: "/", config: accountsController.index},
 
     {method: "GET", path: "/login", config: accountsController.showLogin},
     {method: "GET", path: "/signup", config: accountsController.showSignup},
