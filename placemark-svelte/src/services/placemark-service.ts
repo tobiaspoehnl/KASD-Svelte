@@ -49,7 +49,7 @@ export const placemarkService = {
                 adminrights: adminrights
             };
             console.log(userDetails)
-            await axios.post(this.baseUrl + "/api/usercreate", userDetails);
+            await axios.post(this.baseUrl + "/api/users", userDetails);
             return true;
         } catch (error) {
             return false;
