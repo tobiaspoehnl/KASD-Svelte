@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
     import "leaflet/dist/leaflet.css";
     import { LeafletMap } from "../services/leaflet-map.js";
     import { onMount } from "svelte";
-    import { placemarkService } from "../services/placemark-service.js";
-    import { latestPlacemark } from "../stores";
+    import { placemarkService } from "../services/placemark-service.ts";
+    import { latestPlacemark } from "../stores.ts";
 
     const mapConfig = {
         location: { lat: 51.163361, lng: 10.447683 },

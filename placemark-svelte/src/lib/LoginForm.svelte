@@ -1,13 +1,12 @@
-<script>
+<script lang="ts">
     import { goto } from "$app/navigation";
-    import { placemarkService } from "../services/placemark-service.js";
+    import { placemarkService } from "../services/placemark-service.ts";
 
     let email = "";
     let password = "";
     let errorMessage = "";
 
     async function login() {
-        console.log(`attemting to log in email: ${email} with password: ${password}`);
         let success = await placemarkService.login(email, password)
         if (success) {
             goto("/dashboard");

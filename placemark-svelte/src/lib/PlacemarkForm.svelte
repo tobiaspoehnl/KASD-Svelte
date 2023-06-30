@@ -1,6 +1,6 @@
-<script>
-    import { placemarkService } from "../services/placemark-service.js";
-    import { user } from "../stores.js";
+<script lang="ts">
+    import { placemarkService } from "../services/placemark-service.ts";
+    import { user } from "../stores.ts";
     // @ts-nocheck
 
     let name = "";
@@ -16,7 +16,7 @@
 
     async function addPlacemark() {
         if (name  && longitude && latitude && selectedCategory) {
-            const placemark = {
+            const placemark= {
                 name: name,
                 description: description,
                 location: {

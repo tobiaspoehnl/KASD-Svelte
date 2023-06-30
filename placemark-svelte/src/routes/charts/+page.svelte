@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
     import {onMount} from "svelte";
     import MainNavigator from '$lib/MainNavigator.svelte';
-    import { placemarkService } from "../../services/placemark-service.js";
-    import {latestChartType, latestRoute} from "../../stores.js";
+    import { placemarkService } from "../../services/placemark-service.ts";
+    import {latestChartType, latestRoute} from "../../stores.ts";
     import Chart from 'svelte-frappe-charts';
     import {goto} from "$app/navigation";
+    import type {Charts} from "../../services/types";
 
-    let data = {
+    let data:Charts = {
         labels: ["Food", "Entertainment", "Accommodation", "Transportation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Waters", "Bridge", "Forest", "Parks", "Historic-sites", "Gas-station", "Company", "Other"],
         datasets: [
             {
@@ -14,7 +15,7 @@
             }
         ]
     };
-    let data2 = {
+    let data2:Charts = {
         labels: ['Users', 'Placemarks'],
         datasets: [
             {
@@ -22,9 +23,32 @@
             }
         ]
     }
+    let dataset: object = {
+        userlength: 0,
+        placemarklength: 0,
+        foodlength: 0,
+        entertainmentlength: 0,
+        accommodationlength: 0,
+        transportationlength: 0,
+        citylength: 0,
+        educationlength: 0,
+        medicallength: 0,
+        sportlength: 0,
+        shoppinglength: 0,
+        landscapefeaturelength: 0,
+        riverlength: 0,
+        waterslength: 0,
+        bridgelength: 0,
+        forestlength: 0,
+        parkslength: 0,
+        historicsiteslength: 0,
+        gasstationlength: 0,
+        companylength: 0,
+        otherslength: 0
+    };
 
     onMount(async () => {
-        const dataset = await placemarkService.getdataset();
+        dataset = await placemarkService.getdataset();
         data2.datasets[0].values[0] = dataset.userlength;
         data2.datasets[0].values[1] = dataset.placemarklength;
         data.datasets[0].values[0] = dataset.foodlength;
@@ -48,7 +72,7 @@
         data.datasets[0].values[18] = dataset.otherslength;
     });
 
-    export let charttype;
+    export let charttype: string;
 
     let charttypes = ["bar", "percentage", "line", "pie"];
     let selectedchart = "";

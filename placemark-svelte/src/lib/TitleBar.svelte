@@ -1,5 +1,5 @@
-<script>
-    import { user } from "../stores.js";
+<script lang="ts">
+    import { user } from "../stores.ts";
     export let title = "";
     export let subTitle = "";
 </script>
@@ -14,10 +14,5 @@
     </div>
     <div class="column">
         <img src="../map.png" width="60" alt="img" />
-        {#if $user.email}
-            <div class="is-size-7">{$user.email}</div>
-        {:else}
-            <div class="is-size-7">Placemark-Svelte</div>
-        {/if}
     </div>
 </div>

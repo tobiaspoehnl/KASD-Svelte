@@ -1,13 +1,12 @@
-<script>
+<script lang="ts">
     import {onMount} from "svelte";
     import MainNavigator from '$lib/MainNavigator.svelte';
-    import { placemarkService } from "../../services/placemark-service.js";
+    import { placemarkService } from "../../services/placemark-service.ts";
 
 
     let images = [];
     onMount(async () => {
         images = await placemarkService.getallimages()
-        console.log(images)
     });
 
 </script>

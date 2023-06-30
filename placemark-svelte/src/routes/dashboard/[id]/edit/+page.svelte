@@ -1,16 +1,10 @@
-<script>
+<script lang="ts">
     import MainNavigator from "$lib/MainNavigator.svelte";
-    import { placemarkService } from "../../../../services/placemark-service.js";
-    import { user } from "../../../../stores.js";
-    import {goto} from "$app/navigation";
-    // @ts-nocheck
+    import { placemarkService } from "../../../../services/placemark-service.ts";
+    import type { PlacemarkNoImage, DataForPlacemark} from "../../../../services/types.ts";
 
-    export let data;
+    export let data: DataForPlacemark;
 
-    let name = "";
-    let description = "";
-    let longitude = "";
-    let latitude = "";
 
     let CategoryList =["Food", "Entertainment", "Accommodation", "Transportation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Waters", "Bridge", "Forest", "Parks", "Historic-sites", "Gas-station", "Company", "Other"]
 
@@ -18,16 +12,16 @@
     let message ="Edit Placemark";
 
     async function editPlacemark() {
-            const placemark = {
-                name: name,
-                description: description,
+            const placemark: PlacemarkNoImage = {
+                name: data.placemark.name,
+                description:  data.placemark.description,
                 location: {
-                    latitude: latitude,
-                    longitude: longitude,
+                    latitude:  data.placemark.location.latitude,
+                    longitude:  data.placemark.location.longitude,
                 },
-                category: selectedCategory,
+                category:  data.placemark.category,
             }
-            const success= await placemarkService.editPlacemark(placemark, data);
+            const success= await placemarkService.editPlacemark(placemark, data.placemark._id);
             if (!success) {
                 message = "Adding not completed - some error occurred";
                 return;

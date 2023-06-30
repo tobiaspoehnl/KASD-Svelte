@@ -1,20 +1,22 @@
-<script>
-    import Header from "$lib/Header.svelte";
+<script lang="ts">
     import MainNavigator from "$lib/MainNavigator.svelte";
     import {onMount} from "svelte";
-    import {placemarkService} from "../../../services/placemark-service.js";
-    import {latestRoute} from "../../../stores.js";
+    import {placemarkService} from "../../../services/placemark-service.ts";
     import {goto} from "$app/navigation";
+    import type {DataForImage, Placemark} from "../../../services/types.ts";
 
     const apiKey= import.meta.env.VITE_apikeyopenweather;
 
-    export let data;
+    export let data: DataForImage ;
 
 
-    var conditions;
+    let conditions;
+
+    let placemark: Placemark
+
 
     onMount(async () => {
-        let placemark = await placemarkService.getPlacemark(data.placemark._id);
+        placemark = await placemarkService.getPlacemark(data.placemark._id);
         const requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${placemark.location.latitude}&lon=${placemark.location.longitude}&units=metric&appid=${apiKey}`;
         await fetch(requestUrl, {
             mode: 'cors'

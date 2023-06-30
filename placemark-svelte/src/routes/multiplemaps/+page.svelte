@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
     import { beforeUpdate } from "svelte";
     import MainNavigator from '$lib/MainNavigator.svelte';
     import PlacemarkMap from "$lib/PlacemarkMap.svelte";
-    import { placemarkService } from "../../services/placemark-service.js";
+    import { placemarkService } from "../../services/placemark-service.ts";
 
     beforeUpdate(() => {
         placemarkService.reload();

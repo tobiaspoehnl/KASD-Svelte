@@ -1,5 +1,4 @@
-<script>
-    import Header from '$lib/Header.svelte';
+<script lang="ts">
     import MainNavigator from '$lib/MainNavigator.svelte';
     import PlacemarkForm from '$lib/PlacemarkForm.svelte';
 </script>
