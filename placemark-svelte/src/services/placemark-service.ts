@@ -1,4 +1,3 @@
-// @ts-nocheck
 import axios from "axios";
 import { latestPlacemark, user } from "../stores.ts";
 import type {Placemark, PlacemarkNoImage, ReturnedPlacemark} from "./types";
@@ -47,7 +46,7 @@ export const placemarkService = {
                 lastName: lastName,
                 email: email,
                 password: password,
-                adminrights: adminrights
+                adminrights: false
             };
             await axios.post(this.baseUrl + "/api/users", userDetails);
             return true;
