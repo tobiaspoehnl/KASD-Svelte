@@ -4,10 +4,18 @@ import { db } from "../model/db.js";
 export const adminController = {
     index: {
         handler: async function (request, h) {
+                const loggedInUser = request.auth.credentials;
+                if (loggedInUser.adminrights){
+                    const viewData = {
+                        users: await db.userStore.getAllUsers(),
+                    };
+                    return h.view("admin-page", viewData);
+                }
+                const placemark = await db.placemarkStore.getAllPlacemarks();
                 const viewData = {
-                    users: await db.userStore.getAllUsers(),
+                    placemark: placemark,
                 };
-                return h.view("admin-page", viewData);
+                return h.view("placemark-main", viewData)
         },
     },
     deleteUser: {

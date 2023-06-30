@@ -1,13 +1,12 @@
 import { db } from "../model/db.js";
 import { imageStore } from "../model/image-store.js";
-import {PlacemarkSpec} from "../model/joi-schemas.js";
 
 export const placemarkController = {
     index: {
         handler: async function (request, h) {
             const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
             const loggedInUser = request.auth.credentials
-            const OwnerOrAdmin= (placemark.createdby.equals(loggedInUser._id || loggedInUser.adminrights));
+            const OwnerOrAdmin = (placemark.createdby.equals(loggedInUser._id || loggedInUser.adminrights));
             const viewData = {
                 placemark: placemark,
                 OwnerOrAdmin: OwnerOrAdmin
@@ -43,10 +42,6 @@ export const placemarkController = {
             try {
                 const loggedInUser = request.auth.credentials;
                 const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
-
-                if (!placemark.createdby.equals(loggedInUser._id) && !loggedInUser.adminrights) {
-                    return h.redirect(`/placemark/${request.params.id}`);
-                }
                 // eslint-disable-next-line no-restricted-syntax
                 for (const element of placemark.image) {
 
