@@ -8,7 +8,7 @@
     let email = "";
     let password = "";
     let errorMessage = "";
-    let adminrights = true;
+    let adminrights = false;
 
     async function signup() {
         console.log(`attemting to sign up email: ${email}`);
