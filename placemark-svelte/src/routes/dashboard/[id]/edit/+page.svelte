@@ -12,7 +12,7 @@
     let message ="Edit Placemark";
 
     async function editPlacemark() {
-            const placemark: PlacemarkNoImage = {
+            const placemark = {
                 name: data.placemark.name,
                 description:  data.placemark.description,
                 location: {
@@ -20,6 +20,7 @@
                     longitude:  data.placemark.location.longitude,
                 },
                 category:  data.placemark.category,
+                image: data.placemark.image
             }
             const success= await placemarkService.editPlacemark(placemark, data.placemark._id);
             if (!success) {
