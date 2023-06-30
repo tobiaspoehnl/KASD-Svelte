@@ -8,6 +8,7 @@ import path from "path";
 import Joi from "joi";
 import jwt from "hapi-auth-jwt2";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 import { webRoutes } from "./web-routes.js";
 import {db} from "./model/db.js";
 import { validate } from "./api/jwt-utils.js";
@@ -16,6 +17,13 @@ import {accountsController} from "./controllers/accounts-controller.js";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename)
+
+const result = dotenv.config();
+if (result.error) {
+    console.log(result.error.message);
+    process.exit(1);
+}
+
 
 const swaggerOptions = {
     info: {
@@ -34,8 +42,7 @@ const swaggerOptions = {
 
 async function init() {
     const server = Hapi.server({
-        port: 3000,
-        host: "localhost",
+        port: process.env.PORT || 3000,
         "routes": {
             "cors": true
         }
