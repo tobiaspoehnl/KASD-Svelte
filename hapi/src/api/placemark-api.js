@@ -118,10 +118,11 @@ export const placemarkApi = {
             try {
                 const loggedInUser = request.auth.credentials;
                 const updatedPlacemark = request.payload
-                if(loggedInUser.adminrights || loggedInUser._id.equals(updatedPlacemark.createdby)){
-                    const placemark = await db.placemarkStore.getPlacemarkById(request.params.id)
-                    await db.placemarkStore.updatePlacemark(placemark, updatedPlacemark)
+                if(!loggedInUser.adminrights && !loggedInUser._id.equals(updatedPlacemark.createdby)){
+                    return true;
                 }
+                const placemark = await db.placemarkStore.getPlacemarkById(request.params.id)
+                await db.placemarkStore.updatePlacemark(placemark, updatedPlacemark)
                 return true;
             } catch (err) {
                 return Boom.serverUnavailable("Database Error create");

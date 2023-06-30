@@ -15,7 +15,7 @@ export const adminController = {
                 const viewData = {
                     placemark: placemark,
                 };
-                return h.view("placemark-main", viewData)
+                return h.view("placemarks-main", viewData)
         },
     },
     deleteUser: {

@@ -38,12 +38,10 @@ export const placemarksMainController = {
         handler: async function (request, h) {
             const loggedInUser = request.auth.credentials;
             const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
-            const creator = placemark.createdby
-            console.log(creator)
-            if(loggedInUser.adminrights || loggedInUser._id===creator){
-                await db.placemarkStore.deletePlacemarkById(placemark._id);
+            if(!loggedInUser.adminrights && !loggedInUser._id.equals(placemark.createdby)){
                 return h.redirect("/dashboard");
             }
+            await db.placemarkStore.deletePlacemarkById(placemark._id);
             return h.redirect("/dashboard");
         },
     },
