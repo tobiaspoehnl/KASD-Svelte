@@ -44,15 +44,16 @@ export const placemarkController = {
                 const loggedInUser = request.auth.credentials;
                 const placemark = await db.placemarkStore.getPlacemarkById(request.params.id);
 
-                if (loggedInUser.adminrights || placemark.createdby.equals(loggedInUser._id)) {
-
-                    // eslint-disable-next-line no-restricted-syntax
-                    for (const element of placemark.image) {
-
-                        await imageStore.deleteImage(element);
-                    }
-                    await db.placemarkStore.deletePlacemarkimgs(placemark);
+                if (!placemark.createdby.equals(loggedInUser._id) && !loggedInUser.adminrights) {
+                    return h.redirect(`/placemark/${request.params.id}`);
                 }
+                // eslint-disable-next-line no-restricted-syntax
+                for (const element of placemark.image) {
+
+                    // eslint-disable-next-line no-await-in-loop
+                    await imageStore.deleteImage(element);
+                }
+                await db.placemarkStore.deletePlacemarkimgs(placemark);
                 return h.redirect(`/placemark/${request.params.id}`);
             } catch (err) {
                 console.log(err);

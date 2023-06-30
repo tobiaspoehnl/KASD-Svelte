@@ -73,7 +73,7 @@ export const placemarkApi = {
                 if (!placemark) {
                     return Boom.notFound("No placemark with this id");
                 }
-                if(loggedInUser.adminrights || loggedInUser._id===placemark.createdby){
+                if(loggedInUser.adminrights || loggedInUser._id.equals(placemark.createdby)){
                     await db.placemarkStore.deletePlacemarkById(placemark._id);
                     return h.response().code(204);
                 }
