@@ -61,7 +61,7 @@
     <div class="field">
         <label for="latitude" class="label">category</label>
         <div class="select">
-            <select bind:value={selectedCategory}>
+            <select bind:value={data.placemark.category}>
                 {#each CategoryList as category}
                     <option>{category}</option>
                 {/each}
