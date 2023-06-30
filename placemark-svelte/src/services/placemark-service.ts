@@ -5,7 +5,7 @@ import type {Placemark, PlacemarkNoImage, ReturnedPlacemark} from "./types";
 
 
 export const placemarkService = {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://placemark-hapi-tobias-poehnl.onrender.com",
 
     async login(email: string, password:string): Promise<boolean> {
         try {
