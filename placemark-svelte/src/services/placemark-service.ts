@@ -88,7 +88,7 @@ export const placemarkService = {
 
     async deletePlacemark(id: string): Promise<boolean>{
         try {
-            const response = await axios.delete(`${this.baseUrl}/api/placemarks/${id}/delete`);
+            const response = await axios.delete(`${this.baseUrl}/api/placemark/${id}/delete`);
             return response.status === 200;
         } catch (error) {
             return false;
@@ -98,7 +98,7 @@ export const placemarkService = {
     async editPlacemark(placemark: PlacemarkNoImage, id: string): Promise<boolean>{
         try {
             const updatedplacemark = placemark
-            const response = await axios.post(`${this.baseUrl}/api/placemarks/${id}/edit`, updatedplacemark);
+            const response = await axios.post(`${this.baseUrl}/api/placemark/${id}/edit`, updatedplacemark);
             return response.status === 200;
         } catch (error) {
             return false;
