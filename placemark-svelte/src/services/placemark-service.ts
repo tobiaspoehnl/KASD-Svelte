@@ -46,7 +46,7 @@ export const placemarkService = {
                 lastName: lastName,
                 email: email,
                 password: password,
-                adminrights: false
+                adminrights: adminrights
             };
             await axios.post(this.baseUrl + "/api/users", userDetails);
             return true;
