@@ -46,6 +46,7 @@ export const placemarkController = {
 
                 if (loggedInUser.adminrights || placemark.createdby.equals(loggedInUser._id)) {
 
+                    // eslint-disable-next-line no-restricted-syntax
                     for (const element of placemark.image) {
 
                         await imageStore.deleteImage(element);

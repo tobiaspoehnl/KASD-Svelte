@@ -3,11 +3,11 @@
     import {onMount} from "svelte";
     import {placemarkService} from "../../../services/placemark-service.ts";
     import {goto} from "$app/navigation";
-    import type {DataForImage, Placemark} from "../../../services/types.ts";
+    import type {DataForPlacemark, Placemark} from "../../../services/types.ts";
 
     const apiKey= import.meta.env.VITE_apikeyopenweather;
 
-    export let data: DataForImage ;
+    export let data: DataForPlacemark ;
 
 
     let conditions;
