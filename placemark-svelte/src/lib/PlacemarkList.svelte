@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
     import { onMount } from "svelte";
-    import { placemarkService } from "../services/placemark-service";
+    import { placemarkService } from "../services/placemark-service.ts";
+    import type {ReturnedPlacemark} from "../services/types";
 
-    let placemarkList = [];
+    let placemarkList: Array<ReturnedPlacemark>= [];
     onMount(async () => {
         placemarkList = await placemarkService.getPlacemarks();
     });

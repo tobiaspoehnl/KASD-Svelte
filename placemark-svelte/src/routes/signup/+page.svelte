@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
   import Header from '$lib/Header.svelte';
-  import SignupForm from '$lib/SignupForm.svelte';4
+  import SignupForm from '$lib/SignupForm.svelte';
   import WelcomeNavigator from '$lib/WelcomeNavigator.svelte';
 </script>
 

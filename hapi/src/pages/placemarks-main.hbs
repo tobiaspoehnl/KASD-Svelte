@@ -6,13 +6,35 @@
         <label class="label">Placemark Title</label>
         <input class="input" type="text" placeholder="Enter Placemark title" name="name">
         <label class="label">Placemark longitude</label>
-        <input class="input" type="number" placeholder="Enter Placemark longitude" name="longitude">
+        <input class="input" type="number" placeholder="Enter Placemark longitude" name="longitude" step="0.000001">
         <label class="label">Placemark latitude</label>
-        <input class="input" type="number" placeholder="Enter Placemark latitude" name="latitude">
+        <input class="input" type="number" placeholder="Enter Placemark latitude" name="latitude" step="0.000001">
         <label class="label">Placemark description</label>
         <input class="input" type="text" placeholder="Enter Placemark description" name="description">
         <label class="label">Placemark category</label>
-        <input class="input" type="text" placeholder="Enter Placemark category" name="category">
+        <div class="select">
+            <select class="input" name="category">
+                <option>Food</option>
+                <option>Entertainment</option>
+                <option>Accommodation</option>
+                <option>Transportation</option>
+                <option>City</option>
+                <option>Education</option>
+                <option>Medical</option>
+                <option>Sport</option>
+                <option>Shopping</option>
+                <option>Landscape-Feature</option>
+                <option>River</option>
+                <option>Waters</option>
+                <option>Bridge</option>
+                <option>Forest</option>
+                <option>Parks</option>
+                <option>Historic-sites</option>
+                <option>Gas-station</option>
+                <option>Company</option>
+                <option>Other</option>
+            </select>
+        </div>
     </div>
     <button class="button is-link">Add Placemark</button>
 </form>
@@ -38,6 +60,9 @@
       <span class="icon is-small">
         <i class="fas fa-folder-open"></i>
       </span>
+        </a>
+        <a href="/dashboard/deleteplacemark/{{_id}}" class="button">
+            <i class="fas fa-trash"></i>
         </a>
     </div>
 {{/each}}

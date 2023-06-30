@@ -44,5 +44,9 @@ export const userStore = {
             return true;
         }
         return false;
-    }
+    },
+    async CountUsers(){
+        const users = await User.countDocuments();
+        return users;
+    },
 };

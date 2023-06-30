@@ -1,6 +1,6 @@
-<script>
-    import { placemarkService } from "../services/placemark-service.js";
-    import { user } from "../stores.js";
+<script lang="ts">
+    import { placemarkService } from "../services/placemark-service.ts";
+    import { user } from "../stores.ts";
     // @ts-nocheck
 
     let name = "";
@@ -8,19 +8,15 @@
     let longitude = "";
     let latitude = "";
 
-    let CategoryList =["Food", "Entertainment", "Accommodation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Bridge", "Forest", "Other"]
+    let CategoryList =["Food", "Entertainment", "Accommodation", "Transportation", "City", "Education", "Medical", "Sport", "Shopping", "Landscape-Feature", "River", "Waters", "Bridge", "Forest", "Parks", "Historic-sites", "Gas-station", "Company", "Other"]
 
     let selectedCategory = "";
     let message ="Add Placemark";
 
 
     async function addPlacemark() {
-        console.log(name)
-        console.log(longitude)
-        console.log(latitude)
-        console.log(selectedCategory)
         if (name  && longitude && latitude && selectedCategory) {
-            const placemark = {
+            const placemark= {
                 name: name,
                 description: description,
                 location: {
@@ -60,6 +56,7 @@
         <input bind:value={latitude} id="latitude" class="input" type="number" placeholder="Enter latitude" name="latitude" step="0.000001">
     </div>
     <div class="field">
+        <label for="latitude" class="label">category</label>
         <div class="select">
             <select bind:value={selectedCategory}>
                 {#each CategoryList as category}
@@ -70,7 +67,7 @@
     </div>
     <div class="field">
         <div class="control">
-            <button class="button is-link is-light">Donate</button>
+            <button class="button is-link is-light">Add Placemark</button>
         </div>
     </div>
     <div class="box">

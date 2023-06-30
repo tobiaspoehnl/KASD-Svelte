@@ -1,11 +1,17 @@
-<div class="box has-text-centered columns m-2">
-    <a href="/placemarkupload" class="column is-4">
-        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" /></svg>
+<div class="box has-text-centered is-centered columns m-2">
+    <a href="/placemarkupload" class="column is-2">
+        <i class="fas fa-map-marker-alt fa-3x" style="color:rgb(0, 255, 0)"></i>    </a>
+    <a href="/multiplemaps" class="column is-2">
+        <i class="fas fa-map fa-3x" style="color:rgb(196, 52, 45)"></i>
     </a>
-    <a href="/dashboard" class="column is-4">
+    <a href="/imggallery" class="column is-2">
+        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>    </a>
+    <a href="/charts" class="column is-2">
+        <i class="fas fa-chart-bar fa-3x" style="color:rgb(0, 0, 139)"></i></a>
+    <a href="/dashboard" class="column is-2">
         <i class="fas fa-th-list fa-3x" style="color:rgb(63, 122, 139)" />
     </a>
-    <a href="/logout" class="column is04">
+    <a href="/logout" class="column is-2">
         <i class="fas fa-sign-out-alt fa-3x" style="color:rgb(156, 70, 128)" />
     </a>
 

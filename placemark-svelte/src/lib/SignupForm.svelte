@@ -1,6 +1,6 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { placemarkService } from "../services/placemark-service.js";
+    import { placemarkService } from "../services/placemark-service.ts";
 
     let userName = "";
     let firstName = "";

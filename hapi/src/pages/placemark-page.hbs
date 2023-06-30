@@ -40,4 +40,60 @@
         {{> placemark-image }}
     </div>
 
+    {{#if OwnerOrAdmin}}
+        <form action="/placemark/{{placemark._id}}/edit" method="POST">
+            <label>Edit Placemark: </label>
+            <div class="field is horizontal">
+                <div class="field-body">
+                    <div class="field">
+                        <label class="label">Title</label>
+                        <input class="input" type="text" name="name" value="{{placemark.name}}">
+                    </div>
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <input class="input" type="text" name="description" value="{{placemark.description}}">
+                    </div>
+                    <div class="field">
+                        <label class="label">Latitude</label>
+                        <input class="input" type="number" min="-90" max="90" name="latitude" value="{{placemark.location.latitude}}" step="0.000001">
+                    </div>
+                    <div class="field">
+                        <label class="label">Longitude</label>
+                        <input class="input" type="number" min="-180" max="180" name="longitude" value="{{placemark.location.longitude}}" step="0.000001">
+                    </div>
+                    <div class="field">
+                        <label class="label">Category</label>
+                        <div class="control">
+                            <div class="select">
+                                <select class="input" name="category">
+                                    <option>Food</option>
+                                    <option>Entertainment</option>
+                                    <option>Accommodation</option>
+                                    <option>Transportation</option>
+                                    <option>City</option>
+                                    <option>Education</option>
+                                    <option>Medical</option>
+                                    <option>Sport</option>
+                                    <option>Shopping</option>
+                                    <option>Landscape-Feature</option>
+                                    <option>River</option>
+                                    <option>Waters</option>
+                                    <option>Bridge</option>
+                                    <option>Forest</option>
+                                    <option>Parks</option>
+                                    <option>Historic-sites</option>
+                                    <option>Gas-station</option>
+                                    <option>Company</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="button is-link">Edit Placemark</button>
+        </form>
+    {{/if}}
+
 </section>

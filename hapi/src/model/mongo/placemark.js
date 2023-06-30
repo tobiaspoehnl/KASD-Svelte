@@ -10,7 +10,7 @@ const placemarkSchema = new Schema({
     category: String,
     location: {latitude: Number,
         longitude: Number},
-    image: String,
+    image: [String],
     createdby: {
         type: Schema.Types.ObjectId,
         ref: "User",
