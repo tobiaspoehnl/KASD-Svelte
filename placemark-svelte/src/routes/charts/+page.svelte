@@ -104,7 +104,7 @@
 <form  on:submit|preventDefault={reload}>
     <div class="columns">
         <div class="column has-text-centered">
-            <label for="charttype" class="title is-5">Charttype:</label>
+            <p1 class="title is-5">select type of chart</p1>
             <div class="select">
                 <select bind:value={selectedchart} id="charttype">
                     {#each charttypes as chart}
